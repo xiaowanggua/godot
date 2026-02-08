@@ -18,6 +18,9 @@ disable_physics_3d = "yes"
 # 禁用3D导航
 disable_navigation_3d = "yes"
 
+# 保留高级GUI（包括RichTextLabel、GraphEdit等高级控件）
+# disable_advanced_gui = "no"  # 默认已保留，无需设置
+
 # 禁用的模块（包括网络相关）
 module_bmp_enabled = "no"
 module_enet_enabled = "no"           # 网络库 (Networking library)
