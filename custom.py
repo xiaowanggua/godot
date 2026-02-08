@@ -73,19 +73,23 @@ disable_physics_3d = "yes"
 disable_navigation_3d = "yes"
 
 # ==================================================================================
-# 保留的功能说明
+# 保留的GUI和字体功能（重要！）
 # ==================================================================================
 
-# disable_advanced_gui = "no"  # 默认值，已保留，无需显式设置
-# 说明：保留高级GUI功能
+# disable_advanced_gui = "no"
+# 说明：显式保留高级GUI功能（修复SpinBox、Button、Container等控件显示问题）
 # 保留的功能：
+#   - SpinBox（数字输入框）
+#   - Button及其变体（Button、CheckButton、LinkButton等）
+#   - Container及其子类（VBoxContainer、HBoxContainer、GridContainer等）
 #   - RichTextLabel（富文本标签，支持BBCode）
 #   - GraphEdit、GraphNode（图形编辑器节点）
 #   - Tree（树形控件）
 #   - ItemList（项目列表）
 #   - TabContainer、TabBar（标签页容器）
 #   - SplitContainer（分割容器）
-#   - 等高级GUI控件和行为
+#   - 等所有高级GUI控件和行为
+disable_advanced_gui = "no"
 
 # ==================================================================================
 # 禁用的可选模块
@@ -224,14 +228,18 @@ module_squish_enabled = "no"
 #   - 编辑器图标的SVG格式（会降级到PNG）
 module_svg_enabled = "no"
 
-# module_text_server_adv_enabled = "no"
-# 说明：禁用高级文本服务器（TextServerAdvanced）
-# 禁用的功能：
+# module_text_server_adv_enabled = "yes"
+# 说明：启用高级文本服务器（TextServerAdvanced）- 支持自定义字体！
+# 效果：提供完整的字体渲染和排版支持
+# 保留的功能：
+#   - 自定义字体文件加载和渲染（TTF、OTF等）
 #   - 复杂脚本支持（阿拉伯语、希伯来语等从右到左的文字）
-#   - 高级排版功能
+#   - 高级排版功能（字距调整、连字等）
 #   - OpenType特性支持
-#   - 使用基础的TextServerFallback代替
-module_text_server_adv_enabled = "no"
+#   - 多语言字体支持
+#   - 字体回退机制
+# 注意：禁用此模块会导致自定义字体无法正常显示！
+module_text_server_adv_enabled = "yes"
 
 # module_tga_enabled = "no"
 # 说明：禁用TGA图像格式支持
@@ -298,7 +306,9 @@ module_webxr_enabled = "no"
 # - 2D物理引擎（PhysicsServer2D、RigidBody2D等）
 # - 2D导航系统（但navigation模块被禁用，只保留基础功能）
 # - GDScript脚本语言
-# - 完整的GUI系统（包括高级GUI控件）
+# - 完整的GUI系统（包括高级GUI控件：SpinBox、Button、Container等）✅
+# - 高级文本服务器（支持自定义字体、TTF/OTF文件）✅
+# - 字体渲染模块（FreeType、MSDFGEN）✅
 # - 音频系统（基础音频，但无Vorbis/Ogg支持）
 # - 输入处理系统
 # - 动画系统（AnimationPlayer、Tween等）
@@ -311,14 +321,20 @@ module_webxr_enabled = "no"
 # - 所有XR/VR/AR功能
 # - 视频播放
 # - 某些图像和音频格式（BMP、TGA、HDR、Ogg/Vorbis）
-# - 高级文本排版（复杂脚本支持）
 # - SVG矢量图形
 # - 加密和HTTPS
 # 
 # 🎯 适用场景：
 # - 纯2D游戏（无3D需求）
 # - 单机游戏（无联网需求）
+# - 需要自定义字体的游戏 ✅
+# - 需要完整GUI控件的应用 ✅
 # - 不需要VR/AR的项目
-# - 追求最小体积的项目
+# - 追求合理体积的项目（相比完整版本仍然大幅减小）
+# 
+# 📊 预期体积变化：
+# - 相比之前版本会稍大（增加text_server_adv支持）
+# - 但仍比完整版本小很多（禁用了3D和网络）
+# - 预计约40-45MB（之前是36MB）
 # 
 # ==================================================================================
